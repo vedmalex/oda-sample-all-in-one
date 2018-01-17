@@ -1,0 +1,35 @@
+{
+  "name": "api-graphiql-secured",
+  "version": "1.0.0",
+  "proxy": "http://0.0.0.0:3003",
+  "dependencies": {
+    "apollo-fetch": "^0.7.0",
+    "apollo-link-core": "^0.5.4",
+    "apollo-link-ws": "^1.0.4",
+    "graphiql": "^0.11.11",
+    "graphiql-subscriptions-fetcher": "0.0.2",
+    "isomorphic-fetch": "^2.2.1",
+    "jsrsasign": "^8.0.4",
+    "react": "^15.6.1",
+    "react-bootstrap": "^0.31.0",
+    "react-countdown-clock": "^1.1.0",
+    "react-dom": "^15.6.1",
+    "react-dropzone": "^3.13.3",
+    "subscriptions-transport-ws": "^0.9.5"
+  },
+  "keywords": [
+    "oda-js",
+    "graphql",
+    "graphiql"
+  ],
+  "devDependencies": {
+    "react-scripts": "1.1.0"
+  },
+  "scripts": {
+    "start": "PORT=3001 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "license": "MIT"
+}

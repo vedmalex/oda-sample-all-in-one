@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "clean": "./tasks/clean.sh",
+    "compile": "./tasks/compile.sh",
+    "install-it": "./tasks/install.sh"
+  },
+  "devDependencies": {
+    "lerna": "^2.6.0"
+  }
+}

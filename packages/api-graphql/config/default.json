@@ -1,0 +1,26 @@
+{
+  "AppName": "api-graphql",
+  "hosts": {
+    "api-graphql": {
+      "host": "localhost",
+      "port": 3003
+    }
+  },
+  "subscriptions": {
+    "host": "localhost",
+    "port": 3004
+  },
+  "db": {
+    "api": {
+      "url": "mongodb://localhost/ToDoList"
+    },
+    "api2": {
+      "url": "sqlite://api-graphql-test.sqlite"
+    }
+  },
+  "passport": {
+    "salt2": "aW/sPfrYMjn2Wh6v6jQAnYhJzHSTZqitDiiASvrNtJma3+gHjdCkYw==",
+    "secret": "THE VERY api-graphql AuaVlY5R1Z5hWfdjVDC3qqUBSQVgx3mqDROlU0xJQziwC0mhVjCZ9Q== ONE",
+    "expiresIn": "1h"
+  }
+}
