@@ -3,7 +3,7 @@ import mutations from './mutations';
 import entities from './entities';
 
 export default {
-  name: 'SamanyaBhaktiSastri',
+  name: 'ToDoListApplication',
   packages,
   mutations,
   entities,

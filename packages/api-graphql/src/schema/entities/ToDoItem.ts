@@ -18,21 +18,21 @@ export default {
       type: 'Boolean',
     },
     assignedTo: {
+      indexed: true,
       relation: {
-        indexed: true,
         belongsTo: 'User#'
       }
     },
     creator: {
+      indexed: true,
       relation: {
-        indexed: true,
         belongsTo: 'User#'
       }
     },
     sharedTo: {
       relation: {
         belongsToMany: 'Group#',
-        using: 'ToDoItemsSharedToGroups#item',
+        using: 'ToDoItemsSharedToGroupsMap#item',
       }
     }
   },

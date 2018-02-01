@@ -8,9 +8,6 @@ export default {
     password: {
       required: true,
     },
-    isAdmin: {
-      type: 'boolean',
-    },
     isSystem: {
       type: 'boolean',
     },
@@ -20,7 +17,7 @@ export default {
     groups: {
       relation: {
         belongsToMany: "Group#",
-        using: "UsersToGroups#user",
+        using: "UsersToGroupsMap#user",
       }
     }
   },

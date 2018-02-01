@@ -6,8 +6,8 @@ export default {
     'User',
     'Group',
     'ToDoItem',
-    'ToDoItemsSharedToGroups',
-    'UsersToGroups',
+    'ToDoItemsSharedToGroupsMap',
+    'UsersToGroupsMap',
   ],
   'mutations': [],
 };

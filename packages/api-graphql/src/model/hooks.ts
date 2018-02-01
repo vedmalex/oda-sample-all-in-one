@@ -1,43 +1,62 @@
-// tslint:disable-next-line:max-line-length
-// const dictionary = [].map(f => f.trim()).join(',');
-const businessEntities = [
-  'BusinessBuyer',
-  'BusinessDataItem',
-  'BusinessItem',
-  'BusinessLink',
-  'BusinessProjectPicker',
-  'BusinessTemplate',
-  'BusinessUser',
+const linkEntities = [
+  'UsersToGroupsMap',
+  'ToDoItemsSharedToGroupsMap',
 ].map(f => f.trim()).join(',');
+
+const publicEntities = [
+  'User',
+  'ToDoItem',
+].map(f => f.trim()).join(',');
+
+
+export let adapter = {
+  name: 'mongoose',
+  'entities.*.metadata.storage.adapter': 'mongoose',
+};
+
+export const accessFixEntities = {
+  name: 'Defatult Mutation access',
+  'entities.*.metadata.acl.create': [],
+  'entities.*.metadata.acl.read': [],
+  'entities.*.metadata.acl.update': [],
+  'entities.*.metadata.acl.delete': [],
+  'entities.*.fields.*.metadata.acl.read': [],
+  'entities.*.fields.*.metadata.acl.update': [],
+};
+
+export const accessFixMutations = {
+  name: 'Defatult Mutation access',
+  'mutations.*.metadata.acl.execute': [],
+};
+
+export let linkEntitiesVisibility = {
+  name: 'linkEntities visibility',
+  [`entities.[${linkEntities}].metadata.acl.read`]: 'system',
+  [`entities.[${linkEntities}].fields.*.metadata.acl.read`]: 'system',
+};
 
 export let securityFields = {
   name: 'security',
-  [`entities.^[${businessEntities}].fields.[createdBy,updateBy]`]: {
-    name: 'createdBy',
+  [`entities.*.fields.[createdBy,updateBy]`]: {
     indexed: true,
     relation: {
       belongsTo: 'User#',
     },
   },
-  'entities.^[${businessEntities}].fields.[createdAt,updatedAt]': {
+  'entities.*.fields.[createdAt,updatedAt]': {
     indexed: true,
     type: 'Date',
-  },
-  'entities.^[${businessEntities}].fields.removed': {
-    type: 'boolean',
-    indexed: true,
   },
 };
 
 export let securityAcl = {
   name: 'security',
-  'entities.*.fields.[createdBy,updateBy,createdAt, updatedAt].metadata.acl.read': 'admin',
+  'entities.*.fields.[createdBy,updateBy,createdAt,updatedAt].metadata.acl.read': 'system',
 };
 
 export let ownerFields = {
   name: 'security',
-  // [`entities.^[${dictionary}].fields`]: [
-  [`entities.^[${businessEntities}].fields`]: [
+  [`entities.^[${linkEntities}].fields`]: [
     {
       name: 'owner',
       indexed: true,
@@ -47,94 +66,24 @@ export let ownerFields = {
 
 export let ownerAcl = {
   name: 'security',
-  // [`entities.^[${dictionary}].fields.owner.metadata.acl.read`]: 'admin',
+  [`entities.^[${linkEntities}].fields.owner.metadata.acl.read`]: 'admin',
 };
 
-export let adapter = {
-  name: 'mongoose',
-  'entities.*.metadata.storage.adapter': 'mongoose',
-};
-
-export let userCollectionName = {
-  name: 'set collectionName for User',
-  'entities.User.metadata.storage': {
-    adapter: 'mongoose',
-    collectionName: '_users_',
-  },
-};
-
-export let userIsModerator = {
-  name: 'setup user.isModerator field',
-  'entities.User.fields': [
-    {
-      name: 'isModerator',
-      type: 'boolean',
-      indexed: true,
-    },
-  ],
-  'entities.User.fields.isModerator.metadata.acl.read': 'moderator',
-};
-
-export let userIsAdmin = {
-  name: 'setup user.isAdmin field',
-  'entities.User.fields': [
-    {
-      name: 'isAdmin',
-      type: 'boolean',
-      indexed: true,
-    },
-  ],
-  'entities.User.fields.isAdmin.metadata.acl.read': 'admin',
-};
-
-export let userIsSystem = {
-  name: 'setup user.isSystem field',
-  'entities.User.fields': [
-    {
-      name: 'isSystem',
-      type: 'boolean',
-      indexed: true,
-    },
-  ],
-  'entities.User.fields.isSystem.metadata.acl.read': 'system',
-};
 
 export let defaultVisibility = {
   name: 'default visibility',
-  'entities.*.metadata.acl.read': 'users',
-  'entities.*.fields.*.metadata.acl.read': 'users',
+  'entities.*.metadata.acl.read': 'authenticated',
+  'entities.*.fields.*.metadata.acl.read': 'authenticated',
 };
 
-export let dictionariesVisibility = {
-  name: 'dictionaries visibility',
-  // [`entities.[${dictionary}].metadata.acl.read`]: 'public',
-  // [`entities.[${dictionary}].fields.*.metadata.acl.read`]: 'public',
-};
 
-export const accessFixEntities = {
-  name: 'Defatult Mutation access',
-  'entities.*.metadata.acl.create': [],
-  'entities.*.fields.*.metadata.acl.create': [],
-  'entities.*.metadata.acl.read': [],
-  'entities.*.fields.*.metadata.acl.read': [],
-  'entities.*.metadata.acl.update': [],
-  'entities.*.fields.*.metadata.acl.update': [],
-  'entities.*.metadata.acl.delete': [],
-  'entities.*.fields.*.metadata.acl.delete': [],
-};
 
-export const accessFixMutations = {
-  name: 'Defatult Mutation access',
-  'mutations.*.metadata.acl.execute': [],
-};
+
 
 export let defaultMutationAccess = {
   name: 'Defatult Mutation access',
   'mutations.*.metadata.acl.execute': 'users',
   'mutations.loginUser.metadata.acl.execute': 'public',
-  'mutations.checkLoginEnable.metadata.acl.execute': 'public',
-  'mutations.restorePassword.metadata.acl.execute': 'public',
-  'mutations.startRestorePasswordProcess.metadata.acl.execute': 'public',
 };
 
 export let defaultIdVisibility = {
@@ -142,26 +91,25 @@ export let defaultIdVisibility = {
   'entities.*.fields.id.metadata.acl.read': 'public',
 };
 
+export let publicVisibility = {
+  name: 'linkEntities visibility',
+  [`entities.[${publicEntities}].metadata.acl.read`]: 'public',
+  [`entities.[${publicEntities}].fields.*.metadata.acl.read`]: 'authenticated',
+  'entities.User.fields.[userName].metadata.acl.read': 'public',
+  'entities.ToDoItem.fields.[name, description, dueTo, creator].metadata.acl.read': 'public',
+};
+
 export let runtimeMutationAcl = {
   '*': false,
   system: {
     '*': true,
   },
-  admin: {
+  authenticated: {
     '*': true,
-  },
-  moderator: {
-    '*': true,
-  },
-  users: {
-    '*': true,
+    loginUser: false,
   },
   public: {
     loginUser: true,
-    registerUser: true,
-    checkLoginEnable: true,
-    restorePassword: true,
-    startRestorePasswordProcess: true,
     '*': false,
   },
 };

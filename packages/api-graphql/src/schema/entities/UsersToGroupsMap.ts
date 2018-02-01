@@ -1,5 +1,5 @@
 export default {
-  name: 'UsersToGroups',
+  name: 'UsersToGroupsMap',
   description: 'Users to Groups mapping',
   fields: {
     user: {

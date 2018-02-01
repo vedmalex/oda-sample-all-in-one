@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "api-graphql": "^1.0.0",
-    "admin-on-rest": "^1.3.2",
+    "admin-on-rest": "^1.3.3",
     "aor-dependent-input": "^1.2.0",
     "aor-embedded-array": "0.0.3",
     "aor-language-russian": "^1.0.6",

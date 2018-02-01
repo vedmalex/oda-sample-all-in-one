@@ -12,13 +12,13 @@ export default {
     users: {
       relation: {
         belongsToMany: "User#",
-        using: "UsersToGroups#group",
+        using: "UsersToGroupsMap#group",
       }
     },
     todoItems: {
       relation: {
         belongsToMany: 'ToDoItem#',
-        using: 'ToDoItemsSharedToGroups#group'
+        using: 'ToDoItemsSharedToGroupsMap#group'
       }
     }
   },

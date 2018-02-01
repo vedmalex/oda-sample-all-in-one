@@ -1,5 +1,5 @@
 export default {
-  name: 'ToDoItemsSharedToGroups',
+  name: 'ToDoItemsSharedToGroupsMap',
   description: 'Sharing ToDo items between groups',
   fields: {
     item: {
